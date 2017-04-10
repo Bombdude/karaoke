@@ -6,9 +6,9 @@
 <body>
 
 <h1>Welcome to Princess Productions</h1><br>
-We are in the process of building out our site, this is a preview to allow our great customers and friends to view our music catalog...
+<p style="font-size:30px">This is a website in progress, this is a preview to allow our customers to browse and search the karaoke catalog...
 <br>
-<a href="songlist.php">Search our extensive catalogs of songs...</a>
+<a href="songlist.php">Search for karaoke songs...</a></p>
 
 <?php
 
