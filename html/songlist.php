@@ -8,6 +8,8 @@
     
 <?php
 
+include "songlist_class.php";
+
 
 if ( isset($_POST["qtype"]) && !empty($_POST["qtype"]) ) {
     $qtype = $_POST['qtype'];
@@ -25,6 +27,8 @@ if ( isset($_GET["qtype"]) && !empty($_GET["qtype"]) ) {
 
 if ( isset($_GET["sstring"]) && !empty($_GET["sstring"])) {
     $sstring = $_GET['sstring'];
+    $search_array = split(" ", $sstring);
+    $search_terms = count($search_array);
 }
 
 include "config.php";
@@ -94,6 +98,7 @@ elseif( $qtype == "artist_list_all" ) {
      
 }
 
+//print "SQL: " . $SQL . "<br";
 if( strlen($SQL) > 0 ) {
 
     if (!$result = $dbh->query($SQL)) {
@@ -118,9 +123,13 @@ END;
 
 $count = 0;
 while ($myrow = $result->fetch_assoc()) {
-        
+    
+    //$tmpstring = $myrow['artist'];
+    //preg_replace('/,/', '', $tmpstring);
+    $tmpstring = str_replace( ',', '' , $myrow['artist']);
+    //print $tmpstring . "<br>";
     print "<tr>
-            <td>" . $myrow['artist'] . "</td>
+            <td><a href=\"songlist.php?qtype=search&sstring=" . $tmpstring ." \" >" . $myrow['artist'] . "</a></td>
             <td>" . $myrow['title'] . "</td>
         </tr>\n";
         
